@@ -70,9 +70,10 @@ const Game = {
 
   generateObstacles() {
     if (this.framesCounter % 90 === 0) {
+
       // hemos cambia la referencia de this.posY0 por 600 para mantener fija  la coordenada y de
       // obstacles
-      this.obstacles.push(new Obstacle(this.ctx, this.width, 580, this.player.height))
+      this.obstacles.push(new Obstacle(this.ctx, this.width, this.player.posY0, this.player.height))
     }
   },
 

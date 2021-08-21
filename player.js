@@ -80,6 +80,7 @@ class Player {
       this.posY = this.posY0;
       this.velY = 1;
     }
+
   }
 
   setListeners() {
@@ -101,6 +102,8 @@ class Player {
   // JUMPFUNCTION
 
   jump() {
+    // importante
+    // Necesitamos modificar el rango de salto del player en el doublejum
 
     if (this.posY >= this.posY0) {
       this.posY -= 100;
