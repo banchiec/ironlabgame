@@ -8,6 +8,7 @@ const Game = {
 
   background: undefined,
   player: undefined,
+  // player2: undefined,
   obstacles: [],
 
   keys: {
@@ -51,13 +52,15 @@ const Game = {
 
   reset() {
     this.background = new Background(this.ctx, this.width, this.height, "./img/bg.png")
-    this.player = new Player(this.ctx, this.width, this.height, this.keys)
+    this.player = new Player(this.ctx, 300, this.width, this.height, this.keys)
+    // this.player2 = new Player(this.ctx, 100, this.width, this.height, this.keys)
     this.obstacles = []
   },
 
   drawAll() {
     this.background.draw()
     this.player.draw(this.framesCounter)
+    // this.player2.draw(this.framesCounter)
     this.obstacles.forEach(obs => obs.draw())
   },
 
@@ -67,7 +70,9 @@ const Game = {
 
   generateObstacles() {
     if (this.framesCounter % 90 === 0) {
-      this.obstacles.push(new Obstacle(this.ctx, this.width, this.player.posY0, this.player.height))
+      // hemos cambia la referencia de this.posY0 por 600 para mantener fija  la coordenada y de
+      // obstacles
+      this.obstacles.push(new Obstacle(this.ctx, this.width, 580, this.player.height))
     }
   },
 

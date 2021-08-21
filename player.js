@@ -1,6 +1,6 @@
 class Player {
 
-  constructor(ctx, gameW, gameH, keys) {
+  constructor(ctx, posX, gameW, gameH, keys) {
 
     this.ctx = ctx;
 
@@ -72,6 +72,7 @@ class Player {
   }
 
   move() {
+
     if (this.posY < this.posY0) {   // Está saltando!
       this.posY += this.velY;
       this.velY += this.gravity;
@@ -88,10 +89,6 @@ class Player {
       switch (e.key) {
         case 'w':
           this.counterJump++
-          // if (this.counterSalt === 2) {
-          //   this.doubleJump(this.counter)
-          //   this.counterSalt = 0
-          // }
           this.jump()
           break;
         case 's':
@@ -101,22 +98,29 @@ class Player {
     });
   }
 
+  // JUMPFUNCTION
+
   jump() {
+
     if (this.posY >= this.posY0) {
-      this.posY -= this.jumpLength;
-      // console.log(this.posY)
+      this.posY -= 100;
       this.doubleJump = true
       this.velY -= 8;
       this.gravity = 0.8
     }
     if (this.counterJump === 2 && this.doubleJump) {
       this.doubleJump = false
-      console.log(this.counterJump)
+      // console.log(this.counterJump)
+
       this.counterJump = 0
+      // mantenemos al player levitando
       this.gravity = 0
       this.velY = 0
-      this.posY0 = this.posY
-      console.log(this.posY0)
+
+      // console.log(this.posY)
+      // volvemos a poner la referencia del player a la posicion inicial
+      this.posY = this.gameHeight - this.height - 20;
+      // console.log(this.posY0)
       this.jump()
     }
   }
