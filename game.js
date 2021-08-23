@@ -66,7 +66,7 @@ const Game = {
     this.background.draw()
     this.player.draw(this.framesCounter)
     // this.player2.draw(this.framesCounter)
-    // this.obstacles.forEach(obs => obs.draw())
+    this.obstacles.forEach(obs => obs.draw())
   },
 
   clear() {
