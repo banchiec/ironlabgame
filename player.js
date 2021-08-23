@@ -1,8 +1,8 @@
 class Player {
   constructor(ctx, posX, gameW, gameH, keys) {
     this.ctx = ctx;
-    this.width = 80;
-    this.height = 80;
+    this.width = 100;
+    this.height = 100;
     this.image = new Image();
     this.image.src = "./img/player.png";
     this.image.frames = 3;

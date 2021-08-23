@@ -75,13 +75,21 @@ const Game = {
 
   generateObstacles() {
 
-    if (this.framesCounter % 90 === 0) {
+    // Retorna un entero aleatorio entre min (incluido) y max (excluido)
+    // ¡Usando Math.round() te dará una distribución no-uniforme!
+    function getRandomInt(min, max) {
+      return;
+    }
 
+
+    if (this.framesCounter % (Math.floor(Math.random() * (100 - 80)) + 80) === 0) {
       // hemos cambia la referencia de this.posY0 por 600 para mantener fija  la coordenada y de
       // obstacles
       this.obstacles.push(new Obstacle(this.ctx, this.width, this.player.posY0, this.player.height))
-      // this.obstacles.push(new Obstacle(this.ctx, 400, this.player.posY0, this.player.height))
-      // this.obstacles2.push(new Obstacle(this.ctx, this.width, this.player.posY0, this.player.height))
+    }
+    if (this.framesCounter % (Math.floor(Math.random() * (100 - 10)) + 20) === 0) {
+      this.obstacles.push(new Obstacle(this.ctx, this.width, this.player.posY0, this.player.height, 75, 75))
+      h
     }
   },
 
