@@ -18,13 +18,14 @@ class Player {
 
     this.posX = 300;
     this.posY = this.gameHeight - this.height - 20;
+
     this.posY0 = this.posY;
 
     this.jumpLength = 100
     this.doubleJump = true
     this.counterJump = 0
 
-    this.velY = 100;
+    this.velY = 0;
     this.gravity = 0.8;
 
     this.keys = keys;
@@ -58,6 +59,7 @@ class Player {
       this.width,
       this.height
     )
+    // console.log(this.image.height)
 
     this.animateSprite(framesCounter)
   }
@@ -80,6 +82,7 @@ class Player {
       this.posY = this.posY0;
       this.velY = 1;
     }
+    console.log(this.counterJump)
 
   }
 
@@ -102,44 +105,47 @@ class Player {
   // JUMPFUNCTION
 
   jump() {
+
     // importante
     // Necesitamos modificar el rango de salto del player en el doublejum
 
-    if (this.posY >= this.posY0) {
-      this.posY -= 100;
-      this.doubleJump = true
-      this.velY -= 8;
-      this.gravity = 0.8
-    }
-    if (this.counterJump === 2 && this.doubleJump) {
-      this.doubleJump = false
-      // console.log(this.counterJump)
+    if (this.posY === this.posY0 && this.counterJump !== 2) {
+      this.posY -= 80;
+      // console.log("doublejump")
 
+      this.velY -= 8;
+      // this.gravity = 0.8
+    }
+    if (this.counterJump === 2 && this.posY < this.posY0) {
+      this.doubleJump = false
+      console.log(this.counterJump)
+      // console.log("doublejump")
       this.counterJump = 0
       // mantenemos al player levitando
-      this.gravity = 0
-      this.velY = 0
+      console.log(this.counterJump)
+      console.log(this.velY)
+      // this.gravity = 0
 
-      // console.log(this.posY)
       // volvemos a poner la referencia del player a la posicion inicial
       this.posY = this.gameHeight - this.height - 20;
+      this.velY -= 15
       // console.log(this.posY0)
       this.jump()
     }
   }
 
-  doubleJump(counter) {
+  // doubleJump(counter) {
 
-    // console.log("doublejump")
+  //   // console.log("doublejump")
 
-    this.posY = this.posY0 - this.height
-    console.log(this.posY)
-    if (this.posY - this.height >= this.posY0) {
-      this.posY = this.posY0 - this.jumpLength
-      this.velY -= 10
-    }
+  //   this.posY = this.posY0 - this.height
+  //   // console.log(this.posY)
+  //   if (this.posY - this.height >= this.posY0) {
+  //     this.posY = this.posY0 - this.jumpLength
+  //     this.velY -= 10
+  //   }
 
-  }
+  // }
 
   shoot() {
     this.bullets.push(new Bullets(this.ctx, this.posX, this.posY, this.posY0, this.width, this.height));
