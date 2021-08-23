@@ -2,7 +2,7 @@ class Obstacle {
   constructor(ctx, gameWidth, playerPosY0, playerHeight) {
 
     this.ctx = ctx;
-    this.numberRandom = 20 + Math.floor(Math.random() * 20)
+    this.numberRandom = 20 + Math.floor(Math.random() * (5 - 1) + 5)
     this.width = this.numberRandom;
     this.height = this.width * 2;
 

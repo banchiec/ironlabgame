@@ -80,6 +80,7 @@ const Game = {
       // hemos cambia la referencia de this.posY0 por 600 para mantener fija  la coordenada y de
       // obstacles
       this.obstacles.push(new Obstacle(this.ctx, this.width, this.player.posY0, this.player.height))
+      // this.obstacles.push(new Obstacle(this.ctx, 400, this.player.posY0, this.player.height))
       // this.obstacles2.push(new Obstacle(this.ctx, this.width, this.player.posY0, this.player.height))
     }
   },
