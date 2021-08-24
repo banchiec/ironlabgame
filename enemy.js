@@ -22,17 +22,17 @@ class Enemy {
         // this.image.src = "./img/player.png"
         // this.ctx.drawImage(this.image, 0, 0)
     }
-    draw() {
+    draw(lives) {
         // console.log("1")
         this.ctx.fillStyle = "red"
         this.ctx.fillRect(this.posx, this.posy, this.width, 100)
-        this.move()
+        this.move(lives)
     }
-    move() {
+    move(lives) {
         // this.posy += this.velY
         // this.velY += this.gravity
         // console.log(this.momentum)
-
+        this.posx = this.posx0 + 75 * lives
     }
     setListeners() {
         document.addEventListener("keydown", e => {
