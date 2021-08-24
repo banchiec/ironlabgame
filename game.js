@@ -23,6 +23,8 @@ const Game = {
   //points
   counterCacaolat: 0,
 
+  //bulletCollsion
+
   keys: {
     TOP: 38,
     SPACE: 32
@@ -71,6 +73,8 @@ const Game = {
 
       // pick cacaolat
       this.isPickCacaolat()
+
+      this.isCollisionBullets()
 
 
       this.frametime++
@@ -173,6 +177,7 @@ const Game = {
   },
 
   isCollisionCacaolat() {
+
     return this.cacaolats.some((obs, index) => {
       if (
 
@@ -181,13 +186,36 @@ const Game = {
         this.player.posX <= obs.posX + obs.width && !obs.cacaolatCollision) {
 
         delete this.cacaolats.splice(index, 1)[0]
-
         obs.cacaolatCollision = true
 
         return true
       } else {
         return false
       }
+    })
+  },
+
+
+  isCollisionBullets() {
+
+    this.player.bullets.forEach((bullet, i) => {
+      this.obstacles.forEach((obs, j) => {
+
+        if (bullet.posX + bullet.width >= obs.posX &&
+          bullet.posY <= obs.posY + obs.height &&
+          bullet.posX <= obs.posX + obs.width && bullet.posY + bullet.width >= obs.posY
+        ) {
+
+          obs.liveObstacles--
+          if (obs.liveObstacles === 0) {
+            delete this.obstacles.splice(j, 1)[0]
+          }
+          console.log(obs.liveObstacles)
+
+          delete this.player.bullets.splice(i, 1)[0]
+
+        }
+      })
     })
   },
 

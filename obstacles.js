@@ -12,8 +12,12 @@ class Obstacle {
     this.posX = gameWidth
     this.posY = playerPosY0 + playerHeight - this.height;
 
+
+    this.liveObstacles = 3
+
     this.velX = 10;
   }
+
 
   draw() {
     this.ctx.fillRect(this.posX, this.posY, this.width, this.height);

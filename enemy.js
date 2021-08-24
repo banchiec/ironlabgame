@@ -55,7 +55,9 @@ class Enemy {
             this.posx = this.posX0
             this.gravity = 0
         }
-
-
     }
+    shoot() {
+    }
+
+
 }

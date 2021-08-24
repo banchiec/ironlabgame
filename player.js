@@ -76,9 +76,6 @@ class Player {
   }
   // JUMPFUNCTION
   jump() {
-    // console.log(this.counterJump)
-    // importante
-    // Necesitamos modificar el rango de salto del player en el doublejum
     this.counterJump++
     if (this.posY === this.posY0 && this.counterJump < 2) {
       this.posY -= 180;
@@ -86,9 +83,6 @@ class Player {
     }
     if (this.counterJump === 2 && this.posY < this.posY0) {
       this.doubleJump = false
-      // mantenemos al player levitando
-      // volvemos a poner la referencia del player a la posicion inicial
-      //this.posY = this.gameHeight - this.height - 20;
       this.velY -= 15
       this.jump()
     }

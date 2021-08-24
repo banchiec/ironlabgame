@@ -9,11 +9,16 @@ class Bullets {
     this.playerHeight = playerHeight;
 
     this.radius = 10;
+    this.width = this.radius * 2
 
     this.velX = 10;
     this.velY = 1;
 
     this.gravity = 1;
+
+    this.bulletsCollision = false
+
+
   }
 
   draw() {
