@@ -2,7 +2,7 @@ class Player {
   constructor(ctx, posX, gameW, gameH, keys) {
     this.ctx = ctx;
     this.width = 100;
-    this.height = 100;
+    this.height = 150;
     this.image = new Image();
     this.image.src = "./img/player.png";
     this.image.frames = 3;
@@ -81,7 +81,7 @@ class Player {
     // Necesitamos modificar el rango de salto del player en el doublejum
     this.counterJump++
     if (this.posY === this.posY0 && this.counterJump < 2) {
-      this.posY -= 80;
+      this.posY -= 180;
       this.velY -= 8;
     }
     if (this.counterJump === 2 && this.posY < this.posY0) {
@@ -93,15 +93,6 @@ class Player {
       this.jump()
     }
   }
-  // doubleJump(counter) {
-  //   // console.log("doublejump")
-  //   this.posY = this.posY0 - this.height
-  //   // console.log(this.posY)
-  //   if (this.posY - this.height >= this.posY0) {
-  //     this.posY = this.posY0 - this.jumpLength
-  //     this.velY -= 10
-  //   }
-  // }
   shoot() {
     this.bullets.push(new Bullets(this.ctx, this.posX, this.posY, this.posY0, this.width, this.height));
   }

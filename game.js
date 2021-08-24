@@ -53,18 +53,19 @@ const Game = {
 
 
   reset() {
+
     this.background = new Background(this.ctx, this.width, this.height, "./img/bg.png")
     this.player = new Player(this.ctx, 300, this.width, this.height, this.keys)
 
-    // this.enemy = new Enemy(this.ctx, 0, this.width, this.height)
+    this.enemy = new Particula(this.ctx, this.width, this.height)
 
     this.obstacles = []
-    // this.obstacleRandom = []
   },
 
   drawAll() {
     this.background.draw()
     this.player.draw(this.framesCounter)
+    // this.enemy.draw()
     // this.player2.draw(this.framesCounter)
     this.obstacles.forEach(obs => obs.draw())
   },
@@ -75,23 +76,38 @@ const Game = {
 
   generateObstacles() {
 
-    // Retorna un entero aleatorio entre min (incluido) y max (excluido)
-    // ¡Usando Math.round() te dará una distribución no-uniforme!
-    function getRandomInt(min, max) {
-      return;
-    }
-
-
-    if (this.framesCounter % (Math.floor(Math.random() * (100 - 80)) + 80) === 0) {
+    if (this.framesCounter % (Math.floor(Math.random() * (750 - 150)) + 150) === 0) {
       // hemos cambia la referencia de this.posY0 por 600 para mantener fija  la coordenada y de
       // obstacles
       this.obstacles.push(new Obstacle(this.ctx, this.width, this.player.posY0, this.player.height))
     }
-    if (this.framesCounter % (Math.floor(Math.random() * (100 - 10)) + 20) === 0) {
+    if (this.framesCounter % (Math.floor(Math.random() * (450 - 380)) + 380) === 0) {
       this.obstacles.push(new Obstacle(this.ctx, this.width, this.player.posY0, this.player.height, 75, 75))
-      h
+    }
+    if (this.framesCounter % (Math.floor(Math.random() * (650 - 250)) + 250) === 0) {
+      this.obstacles.push(new Obstacle(this.ctx, this.width, this.player.posY0, this.player.height, 150, 150))
     }
   },
+
+
+
+
+
+  // Retorna un entero aleatorio entre min (incluido) y max (excluido)
+  // ¡Usando Math.round() te dará una distribución no-uniforme!
+  //   function getRandomInt(min, max) {
+  //     return;
+  //   }
+
+  //   if (this.framesCounter % (Math.floor(Math.random() * (100 - 80)) + 80) === 0) {
+  //     // hemos cambia la referencia de this.posY0 por 600 para mantener fija  la coordenada y de
+  //     // obstacles
+  //     this.obstacles.push(new Obstacle(this.ctx, this.width, this.player.posY0, this.player.height))
+  //   }
+  //   if (this.framesCounter % (Math.floor(Math.random() * (100 - 10)) + 20) === 0) {
+  //     this.obstacles.push(new Obstacle(this.ctx, this.width, this.player.posY0, this.player.height, 75, 75))
+  //   }
+  // },
 
   clearObstacles() {
     this.obstacles = this.obstacles.filter(obs => obs.posX >= 0)
