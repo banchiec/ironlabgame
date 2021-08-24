@@ -175,14 +175,15 @@ const Game = {
   isCollisionCacaolat() {
     return this.cacaolats.some((obs, index) => {
       if (
+
         this.player.posX + this.player.width >= obs.posX &&
-        this.player.posY + this.player.height >= obs.posY &&
+        this.player.posY <= obs.posY &&
         this.player.posX <= obs.posX + obs.width && !obs.cacaolatCollision) {
 
         delete this.cacaolats.splice(index, 1)[0]
 
-
         obs.cacaolatCollision = true
+
         return true
       } else {
         return false

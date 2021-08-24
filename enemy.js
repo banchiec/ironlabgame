@@ -33,6 +33,7 @@ class Enemy {
         // this.velY += this.gravity
         // console.log(this.momentum)
         this.posx = this.posx0 + 75 * lives
+        this.posy = this.posy0 + 75 * lives
     }
     setListeners() {
         document.addEventListener("keydown", e => {
