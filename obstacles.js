@@ -8,6 +8,7 @@ class Obstacle {
     // this.height = this.width * 4;
     this.height = height
 
+    this.playerCollision = false
     this.posX = gameWidth
     this.posY = playerPosY0 + playerHeight - this.height;
 

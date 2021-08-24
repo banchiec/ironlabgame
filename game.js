@@ -4,6 +4,8 @@ const Game = {
   ctx: undefined,
   width: undefined,
   height: undefined,
+
+  contadorCollision: 0,
   FPS: 60,
   framesCounter: 0,
 
@@ -46,18 +48,29 @@ const Game = {
       this.generateObstacles()
       this.clearObstacles()
 
-      this.isCollision() ? this.gameOver() : null
+
+      this.isFailed() === 3 ? this.gameOver() : null
+      // this.isFailed()
+      // this.isCollision() ? this.gameOver() : null
 
     }, 1000 / this.FPS)
   },
+  isFailed() {
 
+    console.log(("collision " + this.contadorCollision))
+    // console.log(this.isCollision())
+    if (this.isCollision()) {
+      this.contadorCollision++
+    }
+    return this.contadorCollision
+  },
 
   reset() {
 
     this.background = new Background(this.ctx, this.width, this.height, "./img/bg.png")
     this.player = new Player(this.ctx, 300, this.width, this.height, this.keys)
 
-    this.enemy = new Particula(this.ctx, this.width, this.height)
+    this.enemy = new Enemy(this.ctx, 80, this.width, this.height)
 
     this.obstacles = []
   },
@@ -65,7 +78,7 @@ const Game = {
   drawAll() {
     this.background.draw()
     this.player.draw(this.framesCounter)
-    // this.enemy.draw()
+    this.enemy.draw()
     // this.player2.draw(this.framesCounter)
     this.obstacles.forEach(obs => obs.draw())
   },
@@ -115,11 +128,16 @@ const Game = {
 
   isCollision() {
     return this.obstacles.some(obs => {
-      return (
+      if (
         this.player.posX + this.player.width >= obs.posX &&
         this.player.posY + this.player.height >= obs.posY &&
-        this.player.posX <= obs.posX + obs.width
-      )
+        this.player.posX <= obs.posX + obs.width && !obs.playerCollision
+      ) {
+        obs.playerCollision = true
+        return true
+      } else {
+        return false
+      }
     })
   },
 

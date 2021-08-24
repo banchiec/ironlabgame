@@ -76,7 +76,7 @@ class Player {
   }
   // JUMPFUNCTION
   jump() {
-    console.log(this.counterJump)
+    // console.log(this.counterJump)
     // importante
     // Necesitamos modificar el rango de salto del player en el doublejum
     this.counterJump++
