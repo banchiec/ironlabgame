@@ -144,13 +144,13 @@ const Game = {
   generateObstacles() {
 
     if (this.framesCounter % (Math.floor(Math.random() * (750 - 150)) + 150) === 0) {
-      this.obstacles.push(new Obstacle(this.ctx, this.width, this.player.posY0, this.player.height))
-    }
-    if (this.framesCounter % (Math.floor(Math.random() * (450 - 380)) + 380) === 0) {
-      this.obstacles.push(new Obstacle(this.ctx, this.width, this.player.posY0, this.player.height, 75, 75))
+      this.obstacles.push(new Obstacle(this.ctx, this.width, this.player.posY0, this.player.height, "./img/bloque1x2.png"))
     }
     if (this.framesCounter % (Math.floor(Math.random() * (650 - 250)) + 250) === 0) {
-      this.obstacles.push(new Obstacle(this.ctx, this.width, this.player.posY0, this.player.height, 150, 150))
+      this.obstacles.push(new Obstacle(this.ctx, this.width, this.player.posY0, this.player.height, "./img/bloque_2x2.png", 150, 150))
+    }
+    if (this.framesCounter % (Math.floor(Math.random() * (450 - 380)) + 380) === 0) {
+      this.obstacles.push(new Obstacle(this.ctx, this.width, this.player.posY0, this.player.height, "./img/bloque1x1.png", 75, 75))
     }
   },
 
@@ -167,7 +167,7 @@ const Game = {
     }
     if (this.framesCounter % (Math.floor(Math.random() * (750 - 150)) + 150) === 0) {
       this.cacaolats.push(
-        new Cacaolat(this.ctx, this.width, this.height + this.player.height, this.player.height, 20, 50))
+        new Cacaolat(this.ctx, this.width, this.height - this.player.height, this.player.height, 20, 50))
     }
   },
   clearCacaolats() {
