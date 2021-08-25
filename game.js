@@ -27,6 +27,10 @@ const Game = {
   //bulletCollsion
   text: "CACAOLAT",
 
+  // images 
+  imgCacaolat: new Image(),
+
+
   keys: {
     TOP: 38,
     SPACE: 32
@@ -87,9 +91,9 @@ const Game = {
   score() {
     this.ctx.fillStyle = "black"
     this.ctx.font = '28px serif'
-    this.ctx.fillText(this.text, this.width - this.player.width * 3, 100, 500)
+    this.imgCacaolat.src = "./img/cacaolatOne.png"
+    this.ctx.drawImage(this.imgCacaolat, this.width - this.player.width * 3, 0)
     this.ctx.fillText(this.counterCacaolat, this.width - this.player.width, 100, 500)
-
   },
 
   isFailed() {
@@ -110,11 +114,11 @@ const Game = {
 
   reset() {
 
-    this.background = new Background(this.ctx, this.width, this.height, "./img/bg.png")
+    this.background = new Background(this.ctx, this.width, this.height, "./img/background.png")
     this.player = new Player(this.ctx, 300, this.width, this.height, this.keys)
 
     this.enemy = new Enemy(this.ctx, 80, this.width, this.height)
-    this.cacaolat = new Cacaolat(this.ctx, this.width, this.height, this.player.height, 20, 50)
+    // this.cacaolat = new Cacaolat(this.ctx, this.width, this.height, this.player.height, 20, 50)
 
     this.obstacles = []
     this.cacaolats = []
@@ -127,9 +131,8 @@ const Game = {
     this.player.draw(this.framesCounter)
 
     this.enemy.draw(this.contadorCollision, this.framesCounter)
-    // this.enemy.fly(this.framesCounter)
 
-    this.cacaolat.draw()
+    // this.cacaolat.draw(this.framesCounter)
     this.obstacles.forEach(obs => obs.draw())
     this.cacaolats.forEach(cacaolat => cacaolat.draw())
   },
