@@ -29,6 +29,8 @@ const Game = {
 
   // images 
   imgCacaolat: new Image(),
+  imgLogo: new Image(),
+  imgLive: new Image(),
 
 
   keys: {
@@ -73,6 +75,7 @@ const Game = {
       }
       // console.log(this.gametime)
       if (this.gametime >= 60) {
+
         this.gameOver()
       }
 
@@ -91,9 +94,20 @@ const Game = {
   score() {
     this.ctx.fillStyle = "black"
     this.ctx.font = '28px serif'
-    this.imgCacaolat.src = "./img/cacaolatOne.png"
-    this.ctx.drawImage(this.imgCacaolat, this.width - this.player.width * 3, 0)
-    this.ctx.fillText(this.counterCacaolat, this.width - this.player.width, 100, 500)
+
+    this.imgLogo.src = "./img/logo_interface.png"
+    this.ctx.drawImage(this.imgLogo, this.width / 2 - 50, 20)
+
+    this.imgCacaolat.src = "./img/puntos.png"
+    this.ctx.drawImage(this.imgCacaolat, this.width / 2 + 280, 50)
+
+    this.imgLive.src = "./img/vida.png"
+    this.ctx.drawImage(this.imgLive, this.width / 2 - 300, 50)
+
+    this.ctx.fillText(this.counterCacaolat * 100, this.width / 2 + 200, 90)
+
+    this.ctx.fillText(this.counterCacaolat, this.width / 2 - 200, 90)
+
   },
 
   isFailed() {
