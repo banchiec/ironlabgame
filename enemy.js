@@ -5,24 +5,23 @@ class Enemy {
         this.ctx = ctx
         this.gameWidth = gameWidth
         this.gameHeight = gameHeight
-        this.posx = posx
+        this.posx = posx - 80
 
         this.image = new Image()
         this.image.src = "./img/reloj.png"
         this.image.frame = 6
-
         this.image.framesIndex = 0
 
         this.posx0 = this.posx
         this.height = 150
         this.width = 75
-        this.posy = this.gameHeight - this.height * 2
+        this.posy = this.gameHeight - this.height * 3
         this.posy0 = this.posy
         this.momentum = new Date().getTime() / 30
         this.velY = 0
         this.gravity = 0.8
         this.setListeners()
-        this.posY = this.gameHeight - this.height - 20;
+        this.posY = this.gameHeight - this.height;
 
 
         // this.ctx.drawImage(this.image, 0, 0)

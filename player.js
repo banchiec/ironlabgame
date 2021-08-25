@@ -84,7 +84,6 @@ class Player {
       this.velY -= 8;
     }
     if (this.counterJump === 2 && this.posY < this.posY0) {
-      this.doubleJump = false
       this.velY -= 15
       this.jump()
     }

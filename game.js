@@ -114,7 +114,12 @@ const Game = {
 
   reset() {
 
-    this.background = new Background(this.ctx, this.width, this.height, "./img/background.png")
+    this.background = new Background(this.ctx, this.width, this.height, "./img/sky.png", 12)
+    this.clouds = new Background(this.ctx, this.width, this.height, "./img/clouds.png", 1)
+    this.edificios = new Background(this.ctx, this.width, this.height, "./img/edificios_fondo.png", 2)
+    this.madrid = new Background(this.ctx, this.width, this.height, "./img/madrid.png", 3)
+    this.floor = new Background(this.ctx, this.width, this.height, "./img/floor.png", 8)
+
     this.player = new Player(this.ctx, 300, this.width, this.height, this.keys)
 
     this.enemy = new Enemy(this.ctx, 80, this.width, this.height)
@@ -128,6 +133,10 @@ const Game = {
 
   drawAll() {
     this.background.draw()
+    this.clouds.draw()
+    this.edificios.draw()
+    this.madrid.draw()
+    this.floor.draw()
     this.player.draw(this.framesCounter)
 
     this.enemy.draw(this.contadorCollision, this.framesCounter)
