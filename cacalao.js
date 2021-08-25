@@ -1,5 +1,5 @@
 class Cacaolat {
-    constructor(ctx, gameWidth, gameHeight, playerHeight, width = 75, height = 150) {
+    constructor(ctx, gameWidth, gameHeight, playerHeight, width = 70, height = 150) {
 
         this.ctx = ctx;
         this.width = width
@@ -7,7 +7,11 @@ class Cacaolat {
         this.gameWidth = gameWidth
         this.gameHeight = gameHeight
         this.playerHeight = playerHeight
+        this.isStrong = false
 
+        // Image
+        this.image = new Image()
+        this.image.src = "./img/cacaolat.png"
         // despues
         this.cacaolatCollision = false
 
@@ -20,7 +24,9 @@ class Cacaolat {
 
     draw() {
         // this.ctx.fillStyle = "green"
-        this.ctx.fillRect(this.posX, this.posY, this.width, this.height);
+        // this.ctx.drawImage(0, 0, 10, 200)
+        // this.ctx.fillRect(this.posX, this.posY, this.width, this.height);
+        this.ctx.drawImage(this.image, this.posX, this.posY, this.width, this.height)
         this.move()
     }
 

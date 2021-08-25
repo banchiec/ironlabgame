@@ -1,4 +1,5 @@
 class Obstacle {
+
   constructor(ctx, gameWidth, playerPosY0, playerHeight, width = 75, height = 150) {
 
     this.ctx = ctx;
@@ -17,7 +18,6 @@ class Obstacle {
 
     this.velX = 10;
   }
-
 
   draw() {
     this.ctx.fillRect(this.posX, this.posY, this.width, this.height);

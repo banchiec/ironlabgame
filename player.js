@@ -5,13 +5,15 @@ class Player {
     this.height = 150;
     this.image = new Image();
     this.image.src = "./img/player.png";
-    this.image.frames = 3;
+    this.image.frames = 8;
     this.image.framesIndex = 0;
     this.gameWidth = gameW;
     this.gameHeight = gameH;
     this.posX = 300;
+
     this.posY = this.gameHeight - this.height - 20;
     this.posY0 = this.posY;
+
     this.jumpLength = 100
     this.doubleJump = true
     this.counterJump = 0
@@ -45,7 +47,7 @@ class Player {
     this.animateSprite(framesCounter)
   }
   animateSprite(framesCounter) {
-    if (framesCounter % 3 == 0) {
+    if (framesCounter % 8 === 0) {
       this.image.framesIndex++;
     }
     if (this.image.framesIndex >= this.image.frames) {

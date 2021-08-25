@@ -7,6 +7,7 @@ const Game = {
 
   FPS: 60,
   framesCounter: 0,
+
   gametime: 0,
   frametime: 0,
 
@@ -24,6 +25,7 @@ const Game = {
   counterCacaolat: 0,
 
   //bulletCollsion
+  text: "CACAOLAT",
 
   keys: {
     TOP: 38,
@@ -53,13 +55,14 @@ const Game = {
 
       this.framesCounter > 5000 ? this.framesCounter = 0 : this.framesCounter++
 
-      this.clear()
+      // this.car()
       this.drawAll()
 
       this.generateObstacles()
       this.clearObstacles()
       this.generateCacaolat()
       this.clearCacaolats()
+      this.score()
 
       if (this.frametime % this.FPS === 0) {
         this.gametime++
@@ -81,6 +84,13 @@ const Game = {
 
     }, 1000 / this.FPS)
   },
+  score() {
+    this.ctx.fillStyle = "black"
+    this.ctx.font = '28px serif'
+    this.ctx.fillText(this.text, this.width - this.player.width * 3, 100, 500)
+    this.ctx.fillText(this.counterCacaolat, this.width - this.player.width, 100, 500)
+
+  },
 
   isFailed() {
     // console.log(("collision " + this.contadorCollision))
@@ -91,7 +101,7 @@ const Game = {
   },
 
   isPickCacaolat() {
-    console.log(this.counterCacaolat)
+    // console.log(this.counterCacaolat)
     if (this.isCollisionCacaolat()) {
       this.counterCacaolat++
     }
@@ -108,12 +118,17 @@ const Game = {
 
     this.obstacles = []
     this.cacaolats = []
+
+
   },
 
   drawAll() {
     this.background.draw()
     this.player.draw(this.framesCounter)
-    this.enemy.draw(this.contadorCollision)
+
+    this.enemy.draw(this.contadorCollision, this.framesCounter)
+    // this.enemy.fly(this.framesCounter)
+
     this.cacaolat.draw()
     this.obstacles.forEach(obs => obs.draw())
     this.cacaolats.forEach(cacaolat => cacaolat.draw())
