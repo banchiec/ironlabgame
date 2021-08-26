@@ -9,7 +9,7 @@ class Live {
     }
 
     draw() {
-        console.log(this.live)
+        // console.log(this.live)
         if (this.live === 0) {
             this.ctx.fillStyle = "orange"
             this.ctx.fillRect(this.posx, this.posy, this.posXMove, 30)

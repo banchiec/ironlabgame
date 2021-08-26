@@ -37,6 +37,8 @@ const Game = {
 
   imgGameover: new Image(),
 
+  posxflag: null,
+  isflag: false,
 
   keys: {
     TOP: 38,
@@ -49,6 +51,7 @@ const Game = {
     this.imgGameover.src = "./img/YOU_LOSE.jpg"
     // this.counterPoints = 0
     this.setDimensions()
+    this.posxflag = this.width
     this.start()
   },
 
@@ -81,24 +84,19 @@ const Game = {
       if (this.frametime % this.FPS === 0) {
         this.gametime++
       }
-      // if (this.gameOver()) {
-      //   this.imgCacaolat.src = "./img/YOU_LOSE.jpg"
-      //   this.ctx.drawImage(this.imgCacaolat, this.width / 2 + 280, this.player.posX - 90, 160, 390)
 
-      // }
-      // console.log(this.gametime)
-      if (this.gametime > 3) {
-
-        this.imgCacaolat.src = "./img/bandera.png"
-        this.ctx.drawImage(this.imgCacaolat, this.width / 2 + 280, this.player.posX - 90, 160, 390)
-
-
+      if (this.gametime === 20 && !this.isflag) {
+        this.flag = new Flag(this.ctx, "./img/bandera.png", this.width, this.height)
+        console.log(this.flag.posx)
+        console.log(this.isCollisionFlag())
+        this.isflag = true
       }
       if (this.gametime >= 60) {
         this.gameOver()
       }
 
       this.isFailed() === 3 ? this.gameOver() : null
+      // this.isCollisionFlag() ? console.log("object") : null
 
       // pick cacaolat
       this.isPickCacaolat()
@@ -153,7 +151,7 @@ const Game = {
     if (this.isCollision()) {
       this.contadorCollision++
     }
-    console.log(this.contadorCollision)
+    // console.log(this.contadorCollision)
     return this.contadorCollision
   },
 
@@ -193,6 +191,8 @@ const Game = {
     this.player.draw(this.framesCounter)
 
     this.enemy.draw(this.contadorCollision, this.framesCounter)
+    if (this.flag)
+      this.flag.draw()
 
     // this.cacaolat.draw(this.framesCounter)
     this.obstacles.forEach(obs => obs.draw())
@@ -240,6 +240,17 @@ const Game = {
   clearObstacles() {
     this.obstacles = this.obstacles.filter(obs => obs.posX >= 0)
   },
+
+  isCollisionFlag() {
+
+    console.log(this.flag.posx)
+    console.log(this.player.posX + this.player.width)
+    if (this.flag.posx <= this.player.posX + this.player.width) {
+      return true
+    }
+    return true
+  },
+
 
   isCollision() {
     return this.obstacles.some(obs => {
