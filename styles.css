@@ -2,14 +2,18 @@
     font-family: 'Starborn';
     src: url('./fonts/Starborn.ttf'),
 } */
-#canvas {
+
+.visible{
+    display: flex;
+}
+
+.invisible {
+    display: none;
+}
+.canvas-container {
     display: none;
 }
 
-.visible{
-    display: inline;
-
-}
 #btn-start {
     width: 30%;
     height: 65px;
@@ -22,9 +26,6 @@
     cursor: pointer;
     bottom: 5rem;
 }
-.invisible {
-    display: none;
-}
 .start-container {
     width: 100vw;
     height: 50vw;
@@ -35,14 +36,8 @@
     background-size: 100% 100% ;
 }
 .start-container img{
-
     position: absolute;
-    /* width: 30%; */
-    /* height: 65px; */
     left: 4rem;
-    bottom: 5rem;
+    bottom: 2rem;
     margin-left: 33.5%;
-}
-.canvas-container {
-    display: none;
 }

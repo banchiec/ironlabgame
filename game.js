@@ -65,7 +65,7 @@ const Game = {
   },
 
   start() {
-
+    console.log('object')
     this.reset()
 
     this.interval = setInterval(() => {
