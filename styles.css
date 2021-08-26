@@ -2,6 +2,47 @@
     font-family: 'Starborn';
     src: url('./fonts/Starborn.ttf'),
 } */
-#id {
+#canvas {
+    display: none;
+}
+
+.visible{
+    display: inline;
+
+}
+#btn-start {
+    width: 30%;
+    height: 65px;
+    margin-left: 30.5%;
+    background: transparent;
+    border: none;
+    position: absolute;
+    padding: 40px;
+    left: 4rem;
+    cursor: pointer;
+    bottom: 5rem;
+}
+.invisible {
+    display: none;
+}
+.start-container {
+    width: 100vw;
+    height: 50vw;
+    background-image: url('./img/START.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed ;
+    background-position: cover;
+    background-size: 100% 100% ;
+}
+.start-container img{
+
+    position: absolute;
+    /* width: 30%; */
+    /* height: 65px; */
+    left: 4rem;
+    bottom: 5rem;
+    margin-left: 33.5%;
+}
+.canvas-container {
     display: none;
 }
