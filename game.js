@@ -36,6 +36,7 @@ const Game = {
 
 
   imgGameover: new Image(),
+  imgWin: new Image(),
 
   posxflag: null,
   isflag: false,
@@ -49,6 +50,7 @@ const Game = {
     this.canvas = document.getElementById("myCanvas")
     this.ctx = this.canvas.getContext("2d")
     this.imgGameover.src = "./img/YOU_LOSE.jpg"
+    this.imgWin.src = "./img/YOU_WIN.jpg"
     // this.counterPoints = 0
     this.setDimensions()
     this.posxflag = this.width
@@ -85,18 +87,19 @@ const Game = {
         this.gametime++
       }
 
-      if (this.gametime === 20 && !this.isflag) {
+      if (this.gametime === 59 && !this.isflag) {
+
         this.flag = new Flag(this.ctx, "./img/bandera.png", this.width, this.height)
-        console.log(this.flag.posx)
-        console.log(this.isCollisionFlag())
         this.isflag = true
+
       }
       if (this.gametime >= 60) {
         this.gameOver()
       }
 
       this.isFailed() === 3 ? this.gameOver() : null
-      // this.isCollisionFlag() ? console.log("object") : null
+
+      this.isCollisionFlag() ? this.gameWin() : null
 
       // pick cacaolat
       this.isPickCacaolat()
@@ -242,13 +245,11 @@ const Game = {
   },
 
   isCollisionFlag() {
-
-    console.log(this.flag.posx)
-    console.log(this.player.posX + this.player.width)
-    if (this.flag.posx <= this.player.posX + this.player.width) {
+    if (this.flag && this.flag.posx <= this.player.posX + this.player.width) {
       return true
+    } else {
+      return false
     }
-    return true
   },
 
 
@@ -313,5 +314,10 @@ const Game = {
   gameOver() {
     clearInterval(this.interval)
     this.ctx.drawImage(this.imgGameover, 0, 0, this.width, this.height)
+  },
+  gameWin() {
+    clearInterval(this.interval)
+    this.ctx.drawImage(this.imgWin, 0, 0, this.width, this.height)
+
   }
 }
