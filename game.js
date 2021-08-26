@@ -21,11 +21,12 @@ const Game = {
   // collision
   contadorCollision: 0,
 
+  counterLives: 0,
   //points
   counterCacaolat: 0,
 
+
   //bulletCollsion
-  text: "CACAOLAT",
 
   // images 
   imgCacaolat: new Image(),
@@ -70,10 +71,19 @@ const Game = {
       this.clearCacaolats()
       this.score()
 
+      this.counterLives = this.contadorCollision
+
       if (this.frametime % this.FPS === 0) {
         this.gametime++
       }
       // console.log(this.gametime)
+      if (this.gametime === 57) {
+
+        this.imgCacaolat.src = "./img/puntos.png"
+        this.ctx.drawImage(this.imgCacaolat, this.width / 2 + 280, 400)
+
+
+      }
       if (this.gametime >= 60) {
 
         this.gameOver()
@@ -93,7 +103,6 @@ const Game = {
   },
   score() {
     this.ctx.fillStyle = "black"
-    this.ctx.font = '28px serif'
 
     this.imgLogo.src = "./img/logo_interface.png"
     this.ctx.drawImage(this.imgLogo, this.width / 2 - 50, 20)
@@ -104,14 +113,27 @@ const Game = {
     this.imgLive.src = "./img/vida.png"
     this.ctx.drawImage(this.imgLive, this.width / 2 - 300, 50)
 
-    this.ctx.fillText(this.counterCacaolat * 100, this.width / 2 + 200, 90)
+    this.ctx.fillStyle = "white"
+    this.ctx.font = "50px 'Chewy'"
+    this.ctx.fillText(this.counterCacaolat * 100, this.width / 2 + 150, 90)
 
-    this.ctx.fillText(this.counterCacaolat, this.width / 2 - 200, 90)
+    this.live = new Live(this.ctx, this.counterLives)
+
+    this.live.draw()
+
+    // this.ctx.fillStyle = "white"
+    // this.ctx.fillRect(464, 63, 44, 34)
+
+
+    // this.ctx.fillText("Live", this.width / 2 - 200, 90)
+    // console.log(this.contadorCollision)
 
   },
 
   isFailed() {
+
     // console.log(("collision " + this.contadorCollision))
+
     if (this.isCollision()) {
       this.contadorCollision++
     }
@@ -251,7 +273,7 @@ const Game = {
           if (obs.liveObstacles === 0) {
             delete this.obstacles.splice(j, 1)[0]
           }
-          console.log(obs.liveObstacles)
+          // console.log(obs.liveObstacles)
 
           delete this.player.bullets.splice(i, 1)[0]
 

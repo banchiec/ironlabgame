@@ -17,13 +17,13 @@ class Obstacle {
     this.playerCollision = false
 
 
-    this.liveObstacles = 3
+    this.liveObstacles = 5
 
     this.velX = 10;
   }
 
   draw() {
-    console.log(this)
+    // console.log(this)
     this.ctx.drawImage(
       this.img,
       //   // number frames
