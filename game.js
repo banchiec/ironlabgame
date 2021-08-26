@@ -41,6 +41,16 @@ const Game = {
   posxflag: null,
   isflag: false,
 
+  // audios
+  audioCacaolat: new Audio(),
+  audioGameSong: new Audio(),
+  audioYouLose: new Audio(),
+  audioYouWin: new Audio(),
+
+
+
+
+
   keys: {
     TOP: 38,
     SPACE: 32
@@ -51,6 +61,10 @@ const Game = {
     this.ctx = this.canvas.getContext("2d")
     this.imgGameover.src = "./img/YOU_LOSE.jpg"
     this.imgWin.src = "./img/YOU_WIN.jpg"
+    this.audioCacaolat.src = "./song/cacaolat.mp3"
+    this.audioGameSong.src = "./song/game_sound.mp3"
+    this.audioYouLose.src = "./song/you_lose.mp3"
+    this.audioYouWin.src = "./song/you_win.mp3"
     // this.counterPoints = 0
     this.setDimensions()
     this.posxflag = this.width
@@ -87,11 +101,9 @@ const Game = {
         this.gametime++
       }
 
-      if (this.gametime === 59 && !this.isflag) {
-
+      if (this.gametime === 58 && !this.isflag) {
         this.flag = new Flag(this.ctx, "./img/bandera.png", this.width, this.height)
         this.isflag = true
-
       }
       if (this.gametime >= 60) {
         this.gameOver()
@@ -279,6 +291,7 @@ const Game = {
 
         delete this.cacaolats.splice(index, 1)[0]
         obs.cacaolatCollision = true
+        this.audioCacaolat.play()
 
         return true
       } else {
@@ -314,10 +327,12 @@ const Game = {
   gameOver() {
     clearInterval(this.interval)
     this.ctx.drawImage(this.imgGameover, 0, 0, this.width, this.height)
+    this.audioYouLose.play()
   },
   gameWin() {
     clearInterval(this.interval)
     this.ctx.drawImage(this.imgWin, 0, 0, this.width, this.height)
+    this.audioYouWin.play()
 
   }
 }
