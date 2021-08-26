@@ -32,6 +32,10 @@ const Game = {
   imgCacaolat: new Image(),
   imgLogo: new Image(),
   imgLive: new Image(),
+  imgClock: new Image(),
+
+
+  imgGameover: new Image(),
 
 
   keys: {
@@ -76,16 +80,20 @@ const Game = {
       if (this.frametime % this.FPS === 0) {
         this.gametime++
       }
-      // console.log(this.gametime)
-      if (this.gametime === 57) {
+      // if (this.gameOver()) {
+      //   this.imgCacaolat.src = "./img/YOU_LOSE.jpg"
+      //   this.ctx.drawImage(this.imgCacaolat, this.width / 2 + 280, this.player.posX - 90, 160, 390)
 
-        this.imgCacaolat.src = "./img/puntos.png"
-        this.ctx.drawImage(this.imgCacaolat, this.width / 2 + 280, 400)
+      // }
+      // console.log(this.gametime)
+      if (this.gametime > 3) {
+
+        this.imgCacaolat.src = "./img/bandera.png"
+        this.ctx.drawImage(this.imgCacaolat, this.width / 2 + 280, this.player.posX - 90, 160, 390)
 
 
       }
       if (this.gametime >= 60) {
-
         this.gameOver()
       }
 
@@ -116,6 +124,13 @@ const Game = {
     this.ctx.fillStyle = "white"
     this.ctx.font = "50px 'Chewy'"
     this.ctx.fillText(this.counterCacaolat * 100, this.width / 2 + 150, 90)
+
+    this.ctx.font = "30px 'Chewy'"
+    // this.ctx.fillText("time:", this.width - 200, 90)
+
+    this.imgClock.src = "./img/timer.png"
+    this.ctx.drawImage(this.imgClock, this.width - 180, 50)
+    this.ctx.fillText(this.gametime, this.width - 100, 88)
 
     this.live = new Live(this.ctx, this.counterLives)
 
