@@ -46,6 +46,7 @@ const Game = {
   init() {
     this.canvas = document.getElementById("myCanvas")
     this.ctx = this.canvas.getContext("2d")
+    this.imgGameover.src = "./img/YOU_LOSE.jpg"
     // this.counterPoints = 0
     this.setDimensions()
     this.start()
@@ -152,6 +153,7 @@ const Game = {
     if (this.isCollision()) {
       this.contadorCollision++
     }
+    console.log(this.contadorCollision)
     return this.contadorCollision
   },
 
@@ -299,5 +301,6 @@ const Game = {
 
   gameOver() {
     clearInterval(this.interval)
+    this.ctx.drawImage(this.imgGameover, 0, 0, this.width, this.height)
   }
 }
